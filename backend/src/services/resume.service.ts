@@ -11,7 +11,9 @@ import {
   validateFileExtension,
 } from '../validators/resume.validator.js'
 import * as resumeRepository from '../repositories/resume.repository.js'
+import { parseResume } from '../parsers/resumeParser.js'
 import type { Resume } from '@prisma/client'
+import type { ParsedResume } from '../types/index.js'
 import { ensurePathWithin } from '../security/validate.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -37,6 +39,14 @@ export async function uploadResume(file: Express.Multer.File): Promise<UploadRes
     mimeType: file.mimetype,
     size: file.size,
   })
+
+  try {
+    const parsed = await parseResume(resume.filename, resume.mimeType)
+    await resumeRepository.updateResumeParsedData(resume.id, JSON.stringify(parsed))
+    logger.info('Resume parsed after upload', { id: resume.id })
+  } catch (error) {
+    logger.warn('Resume parsing failed after upload', { id: resume.id, error })
+  }
 
   logger.info('Resume uploaded', {
     id: resume.id,
@@ -94,6 +104,14 @@ export async function replaceResume(
     size: file.size,
   })
 
+  try {
+    const parsed = await parseResume(updated.filename, updated.mimeType)
+    await resumeRepository.updateResumeParsedData(updated.id, JSON.stringify(parsed))
+    logger.info('Resume re-parsed after replace', { id: updated.id })
+  } catch (error) {
+    logger.warn('Resume parsing failed after replace', { id: updated.id, error })
+  }
+
   logger.info('Resume replaced', {
     id: updated.id,
     previousName: existing.originalName,
@@ -101,4 +119,26 @@ export async function replaceResume(
   })
 
   return { resume: updated, previousFilename: existing.filename }
+}
+
+export async function getParsedResume(id: string): Promise<ParsedResume> {
+  const resume = await getResume(id)
+
+  if (!resume.parsedData) {
+    const parsed = await parseResume(resume.filename, resume.mimeType)
+    const json = JSON.stringify(parsed)
+    await resumeRepository.updateResumeParsedData(resume.id, json)
+    return parsed
+  }
+
+  return JSON.parse(resume.parsedData) as ParsedResume
+}
+
+export async function triggerReparse(id: string): Promise<ParsedResume> {
+  const resume = await getResume(id)
+  const parsed = await parseResume(resume.filename, resume.mimeType)
+  const json = JSON.stringify(parsed)
+  await resumeRepository.updateResumeParsedData(resume.id, json)
+  logger.info('Resume re-parsed on demand', { id })
+  return parsed
 }

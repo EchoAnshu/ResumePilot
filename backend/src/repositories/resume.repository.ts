@@ -43,4 +43,28 @@ export async function updateResumeFile(
   })
 }
 
+export async function updateResumeParsedData(
+  id: string,
+  parsedData: string,
+): Promise<Resume> {
+  return prisma.resume.update({
+    where: { id },
+    data: { parsedData },
+  })
+}
+
+export async function updateResumeAiResults(
+  id: string,
+  aiResults: string,
+): Promise<Resume> {
+  return prisma.resume.update({
+    where: { id },
+    data: { aiResults },
+  })
+}
+
+export async function countResumes(): Promise<number> {
+  return prisma.resume.count()
+}
+
 
