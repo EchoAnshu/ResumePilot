@@ -19,4 +19,10 @@ export const config = {
     'application/pdf',
     'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
   ],
+  ollama: {
+    host: process.env.OLLAMA_HOST || 'http://localhost:11434',
+    model: process.env.OLLAMA_MODEL || 'qwen2.5:7b',
+    timeoutMs: parseInt(process.env.OLLAMA_TIMEOUT || '120000', 10),
+    maxRetries: parseInt(process.env.OLLAMA_MAX_RETRIES || '2', 10),
+  },
 } as const

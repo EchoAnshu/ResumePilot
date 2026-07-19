@@ -7,6 +7,7 @@ import Skeleton, { SkeletonCard } from '../components/ui/Skeleton'
 import AtsScoreCard from '../components/ats/AtsScoreCard'
 import AtsCategoryBreakdown from '../components/ats/AtsCategoryBreakdown'
 import AtsInsights from '../components/ats/AtsInsights'
+import AiInsightsSection from '../components/ats/AiInsightsSection'
 import { fetchAnalysis, triggerAnalysis } from '../services/analysis'
 import { fetchResume } from '../services/resume'
 import type { AtsScore, ParsedResume } from '../types'
@@ -74,6 +75,7 @@ export default function ResumeAnalysis() {
             <SkeletonCard />
           </div>
           <div className="space-y-6">
+            <SkeletonCard />
             <SkeletonCard />
             <SkeletonCard />
           </div>
@@ -193,6 +195,7 @@ export default function ResumeAnalysis() {
 
         <div className="space-y-6">
           <AtsInsights score={atsScore} />
+          {id && <AiInsightsSection resumeId={id} />}
         </div>
       </div>
     </div>

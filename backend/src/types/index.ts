@@ -65,6 +65,63 @@ export interface ProjectEntry {
   url: string
 }
 
+export type AiTaskType = 'summary' | 'grammar' | 'bullets' | 'projects' | 'experience' | 'verbs' | 'tone' | 'career' | 'rewrite'
+
+export interface AiSummaryResult {
+  summary: string
+  strengths: string[]
+  weaknesses: string[]
+  suggestions: string[]
+}
+
+export interface AiGrammarResult {
+  issues: Array<{ type: string; text: string; suggestion: string }>
+  overallAssessment: string
+}
+
+export interface AiBulletsResult {
+  improvements: Array<{ original: string; improved: string; reason: string }>
+}
+
+export interface AiProjectsResult {
+  improvements: Array<{ original: string; improved: string; reason: string }>
+}
+
+export interface AiExperienceResult {
+  improvements: Array<{ original: string; improved: string; reason: string }>
+}
+
+export interface AiActionVerbsResult {
+  suggestions: Array<{ original: string; suggested: string; context: string }>
+}
+
+export interface AiToneResult {
+  assessment: string
+  suggestions: string[]
+}
+
+export interface AiCareerResult {
+  suggestedRoles: string[]
+  skillGaps: string[]
+  recommendations: string[]
+}
+
+export interface AiRewriteResult {
+  rewrittenResume: string
+  changes: string[]
+}
+
+export type AiTaskResult =
+  | AiSummaryResult
+  | AiGrammarResult
+  | AiBulletsResult
+  | AiProjectsResult
+  | AiExperienceResult
+  | AiActionVerbsResult
+  | AiToneResult
+  | AiCareerResult
+  | AiRewriteResult
+
 export interface AtsScore {
   overall: number
   contact: number

@@ -7,6 +7,7 @@ export const ERROR_CODES = {
   NOT_FOUND: 'NOT_FOUND',
   INTERNAL_ERROR: 'INTERNAL_ERROR',
   ANALYSIS_FAILED: 'ANALYSIS_FAILED',
+  AI_ERROR: 'AI_ERROR',
 } as const
 
 export const ANALYSIS_STATUS = {
@@ -14,6 +15,18 @@ export const ANALYSIS_STATUS = {
   PROCESSING: 'processing',
   COMPLETED: 'completed',
   FAILED: 'failed',
+} as const
+
+export const AI_TASKS = {
+  SUMMARY: 'summary',
+  GRAMMAR: 'grammar',
+  BULLETS: 'bullets',
+  PROJECTS: 'projects',
+  EXPERIENCE: 'experience',
+  VERBS: 'verbs',
+  TONE: 'tone',
+  CAREER: 'career',
+  REWRITE: 'rewrite',
 } as const
 
 export const ATS_WEIGHTS = {

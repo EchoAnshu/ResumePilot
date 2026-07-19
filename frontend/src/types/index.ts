@@ -60,6 +60,25 @@ export interface Project {
   url: string
 }
 
+export type AiTaskType = 'summary' | 'grammar' | 'bullets' | 'projects' | 'experience' | 'verbs' | 'tone' | 'career' | 'rewrite'
+
+export interface AiTaskResponse {
+  task: string
+  result: Record<string, unknown>
+}
+
+export const AI_TASK_LABELS: Record<AiTaskType, string> = {
+  summary: 'Summary',
+  grammar: 'Grammar',
+  bullets: 'Bullets',
+  projects: 'Projects',
+  experience: 'Experience',
+  verbs: 'Verbs',
+  tone: 'Tone',
+  career: 'Career',
+  rewrite: 'Rewrite',
+}
+
 export interface AtsScore {
   overall: number
   contact: number
