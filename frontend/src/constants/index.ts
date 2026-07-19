@@ -4,10 +4,8 @@ export const APP_NAME = 'ResumePilot'
 
 export const ROUTES = {
   home: '/',
-  dashboard: '/dashboard',
   upload: '/upload',
   analysis: '/analysis/:id',
-  jdMatch: '/analysis/:id/jd-match',
   settings: '/settings',
   about: '/about',
 } as const

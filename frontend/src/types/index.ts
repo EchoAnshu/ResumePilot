@@ -60,6 +60,21 @@ export interface Project {
   url: string
 }
 
+export interface AtsScore {
+  overall: number
+  contact: number
+  skills: number
+  experience: number
+  projects: number
+  education: number
+  keywords: number
+  formatting: number
+  readability: number
+  weakAreas: string[]
+  strongAreas: string[]
+  recommendations: string[]
+}
+
 export interface HealthCheck {
   status: string
   timestamp: string
