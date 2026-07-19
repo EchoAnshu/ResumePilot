@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Resume {
+  id           String   @id @default(uuid())
+  originalName String
+  filename     String   @unique
+  mimeType     String
+  size         Int
+  parsedData   String?
+  aiResults    String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  analyses  Analysis[]
+  jdMatches JdMatch[]
+
+  @@index([createdAt])
+}
+
+model Analysis {
+  id        String   @id @default(uuid())
+  resumeId  String
+  status    String   @default("PENDING")
+  atsScore  String?
+  summary   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  resume Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+
+  @@index([resumeId])
+  @@index([createdAt])
+}
+
+model JdMatch {
+  id        String   @id @default(uuid())
+  resumeId  String
+  jdText    String
+  matchData String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  resume Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+
+  @@index([resumeId])
+  @@index([createdAt])
+}
+
+model Setting {
+  id    String @id @default(uuid())
+  key   String @unique
+  value String
+}
