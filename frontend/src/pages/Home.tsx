@@ -8,7 +8,7 @@ const features = [
   {
     icon: Upload,
     title: 'Resume Upload',
-    description: 'Upload PDF or DOCX resumes with drag & drop.',
+    description: 'Upload PDF or DOCX resumes with drag & drop support.',
   },
   {
     icon: BarChart3,
@@ -32,11 +32,6 @@ export default function Home() {
           <Link to={ROUTES.upload}>
             <Button size="lg" icon={<Upload className="h-5 w-5" />}>
               Upload Resume
-            </Button>
-          </Link>
-          <Link to={ROUTES.dashboard}>
-            <Button variant="outline" size="lg">
-              View Dashboard
             </Button>
           </Link>
         </div>

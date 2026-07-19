@@ -55,7 +55,7 @@ export default function Settings() {
           <div>
             <p className="font-medium text-gray-900 dark:text-gray-100">About</p>
             <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-              {APP_NAME} v1.0.0 — A local AI-powered resume analyzer.
+              {APP_NAME} v1.0.0 &mdash; A local AI-powered resume analyzer.
             </p>
             <p className="text-sm text-gray-500 dark:text-gray-400">
               All data stays on your machine. No internet required.
