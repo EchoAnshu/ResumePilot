@@ -1,5 +1,5 @@
-import type { ParsedResume, AtsScore } from '../types/index.js'
-import { ATS_WEIGHTS } from '../constants/index.js'
+import type { ParsedResume, AtsScore } from '../../types/index.js'
+import { ATS_WEIGHTS } from '../../constants/index.js'
 
 const ACTION_VERBS = new Set([
   'achieved', 'improved', 'trained', 'managed', 'created', 'developed',
