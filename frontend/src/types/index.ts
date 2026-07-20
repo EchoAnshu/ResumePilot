@@ -79,6 +79,15 @@ export const AI_TASK_LABELS: Record<AiTaskType, string> = {
   rewrite: 'Rewrite',
 }
 
+export interface AppSettings {
+  theme: string
+  aiModel: string
+  ollamaHost: string
+  autoAnalyze: string
+  storagePath: string
+  logLevel: string
+}
+
 export interface JdMatchResult {
   matchPercentage: number
   matchingSkills: string[]
