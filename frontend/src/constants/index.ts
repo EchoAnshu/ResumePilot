@@ -6,6 +6,7 @@ export const ROUTES = {
   home: '/',
   upload: '/upload',
   analysis: '/analysis/:id',
+  jdMatch: '/analysis/:id/jd-match',
   settings: '/settings',
   about: '/about',
 } as const

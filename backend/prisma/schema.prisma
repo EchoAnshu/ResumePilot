@@ -33,3 +33,15 @@ model Analysis {
   @@unique([resumeId])
   @@index([createdAt])
 }
+
+model JdMatch {
+  id        String   @id @default(uuid())
+  resumeId  String
+  resume    Resume   @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+  jdText    String
+  matchData String
+  createdAt DateTime @default(now())
+
+  @@index([resumeId])
+  @@index([createdAt])
+}

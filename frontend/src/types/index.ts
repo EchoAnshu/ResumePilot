@@ -79,6 +79,18 @@ export const AI_TASK_LABELS: Record<AiTaskType, string> = {
   rewrite: 'Rewrite',
 }
 
+export interface JdMatchResult {
+  matchPercentage: number
+  matchingSkills: string[]
+  missingSkills: string[]
+  matchingKeywords: string[]
+  missingKeywords: string[]
+  keywordMatchPercentage: number
+  suggestions: string[]
+  jdText: string
+  createdAt: string
+}
+
 export interface AtsScore {
   overall: number
   contact: number

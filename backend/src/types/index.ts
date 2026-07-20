@@ -122,6 +122,18 @@ export type AiTaskResult =
   | AiCareerResult
   | AiRewriteResult
 
+export interface JdMatchResult {
+  matchPercentage: number
+  matchingSkills: string[]
+  missingSkills: string[]
+  matchingKeywords: string[]
+  missingKeywords: string[]
+  keywordMatchPercentage: number
+  suggestions: string[]
+  jdText: string
+  createdAt: string
+}
+
 export interface AtsScore {
   overall: number
   contact: number

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { BarChart3, RefreshCw, AlertCircle } from 'lucide-react'
+import { useParams, Link } from 'react-router-dom'
+import { BarChart3, RefreshCw, Briefcase, AlertCircle } from 'lucide-react'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
 import Skeleton, { SkeletonCard } from '../components/ui/Skeleton'
@@ -196,6 +196,20 @@ export default function ResumeAnalysis() {
         <div className="space-y-6">
           <AtsInsights score={atsScore} />
           {id && <AiInsightsSection resumeId={id} />}
+          {id && (
+            <Card title="Quick Actions" padding="lg">
+              <Link
+                to={`/analysis/${id}/jd-match`}
+                className="flex items-center gap-3 p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-indigo-300 dark:hover:border-indigo-600 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all text-sm"
+              >
+                <Briefcase className="h-5 w-5 text-indigo-500 shrink-0" />
+                <div>
+                  <p className="font-medium text-gray-900 dark:text-gray-100">Job Description Match</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">Compare your resume with a job description</p>
+                </div>
+              </Link>
+            </Card>
+          )}
         </div>
       </div>
     </div>
