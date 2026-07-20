@@ -65,7 +65,7 @@ export interface ProjectEntry {
   url: string
 }
 
-export type AiTaskType = 'summary' | 'grammar' | 'bullets' | 'projects' | 'experience' | 'verbs' | 'tone' | 'career' | 'rewrite'
+export type AiTaskType = 'summary' | 'grammar' | 'bullets' | 'projects' | 'experience' | 'verbs' | 'tone' | 'career' | 'rewrite' | 'interview'
 
 export interface AiSummaryResult {
   summary: string
@@ -111,6 +111,18 @@ export interface AiRewriteResult {
   changes: string[]
 }
 
+export interface AiInterviewQuestion {
+  question: string
+  focus: string
+}
+
+export interface AiInterviewResult {
+  general: AiInterviewQuestion[]
+  technical: AiInterviewQuestion[]
+  behavioral: AiInterviewQuestion[]
+  experienceBased: AiInterviewQuestion[]
+}
+
 export type AiTaskResult =
   | AiSummaryResult
   | AiGrammarResult
@@ -121,6 +133,7 @@ export type AiTaskResult =
   | AiToneResult
   | AiCareerResult
   | AiRewriteResult
+  | AiInterviewResult
 
 export interface JdMatchResult {
   matchPercentage: number

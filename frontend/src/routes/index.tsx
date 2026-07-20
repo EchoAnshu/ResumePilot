@@ -8,6 +8,7 @@ const Dashboard = lazy(() => import('../pages/Dashboard'))
 const ResumeUpload = lazy(() => import('../pages/ResumeUpload'))
 const ResumeAnalysis = lazy(() => import('../pages/ResumeAnalysis'))
 const JdMatch = lazy(() => import('../pages/JdMatch'))
+const InterviewPrep = lazy(() => import('../pages/InterviewPrep'))
 const Settings = lazy(() => import('../pages/Settings'))
 const About = lazy(() => import('../pages/About'))
 const NotFound = lazy(() => import('../pages/NotFound'))
@@ -35,6 +36,7 @@ const router = createBrowserRouter([
       { path: ROUTES.upload, element: <Lazy><ResumeUpload /></Lazy> },
       { path: ROUTES.analysis, element: <Lazy><ResumeAnalysis /></Lazy> },
       { path: ROUTES.jdMatch, element: <Lazy><JdMatch /></Lazy> },
+      { path: ROUTES.interview, element: <Lazy><InterviewPrep /></Lazy> },
       { path: ROUTES.settings, element: <Lazy><Settings /></Lazy> },
       { path: ROUTES.about, element: <Lazy><About /></Lazy> },
       { path: '*', element: <Lazy><NotFound /></Lazy> },

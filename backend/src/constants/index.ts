@@ -27,6 +27,7 @@ export const AI_TASKS = {
   TONE: 'tone',
   CAREER: 'career',
   REWRITE: 'rewrite',
+  INTERVIEW: 'interview',
 } as const
 
 export const ATS_WEIGHTS = {

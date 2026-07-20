@@ -14,6 +14,7 @@ import { buildVerbsPrompt } from '../prompts/verbs.js'
 import { buildTonePrompt } from '../prompts/tone.js'
 import { buildCareerPrompt } from '../prompts/career.js'
 import { buildRewritePrompt } from '../prompts/rewrite.js'
+import { buildInterviewPrompt } from '../prompts/interview.js'
 import type {
   ParsedResume,
   AiTaskType,
@@ -26,6 +27,7 @@ import type {
   AiToneResult,
   AiCareerResult,
   AiRewriteResult,
+  AiInterviewResult,
   AiTaskResult,
 } from '../types/index.js'
 
@@ -39,6 +41,7 @@ const promptBuilders: Record<AiTaskType, (r: ParsedResume) => string> = {
   tone: buildTonePrompt,
   career: buildCareerPrompt,
   rewrite: buildRewritePrompt,
+  interview: buildInterviewPrompt,
 }
 
 async function getParsedResume(id: string): Promise<ParsedResume> {
@@ -147,6 +150,10 @@ function validateTaskResult(task: AiTaskType, result: unknown): boolean {
     case 'rewrite': {
       const r = result as AiRewriteResult
       return typeof r.rewrittenResume === 'string' && Array.isArray(r.changes)
+    }
+    case 'interview': {
+      const r = result as AiInterviewResult
+      return Array.isArray(r.general) && Array.isArray(r.technical) && Array.isArray(r.behavioral) && Array.isArray(r.experienceBased)
     }
     default:
       return false

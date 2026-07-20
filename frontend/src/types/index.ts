@@ -60,7 +60,7 @@ export interface Project {
   url: string
 }
 
-export type AiTaskType = 'summary' | 'grammar' | 'bullets' | 'projects' | 'experience' | 'verbs' | 'tone' | 'career' | 'rewrite'
+export type AiTaskType = 'summary' | 'grammar' | 'bullets' | 'projects' | 'experience' | 'verbs' | 'tone' | 'career' | 'rewrite' | 'interview'
 
 export interface AiTaskResponse {
   task: string
@@ -77,6 +77,19 @@ export const AI_TASK_LABELS: Record<AiTaskType, string> = {
   tone: 'Tone',
   career: 'Career',
   rewrite: 'Rewrite',
+  interview: 'Interview Prep',
+}
+
+export interface AiInterviewQuestion {
+  question: string
+  focus: string
+}
+
+export interface AiInterviewResult {
+  general: AiInterviewQuestion[]
+  technical: AiInterviewQuestion[]
+  behavioral: AiInterviewQuestion[]
+  experienceBased: AiInterviewQuestion[]
 }
 
 export interface AppSettings {

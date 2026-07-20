@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { BarChart3, RefreshCw, Briefcase, Download, FileJson, FileText, File as FilePdf, AlertCircle } from 'lucide-react'
+import { BarChart3, RefreshCw, Briefcase, Download, FileJson, FileText, File as FilePdf, AlertCircle, HelpCircle } from 'lucide-react'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
 import Skeleton, { SkeletonCard } from '../components/ui/Skeleton'
@@ -208,6 +208,16 @@ export default function ResumeAnalysis() {
                 <div>
                   <p className="font-medium text-gray-900 dark:text-gray-100">Job Description Match</p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">Compare your resume with a job description</p>
+                </div>
+              </Link>
+              <Link
+                to={`/analysis/${id}/interview`}
+                className="flex items-center gap-3 p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-indigo-300 dark:hover:border-indigo-600 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all text-sm"
+              >
+                <HelpCircle className="h-5 w-5 text-indigo-500 shrink-0" />
+                <div>
+                  <p className="font-medium text-gray-900 dark:text-gray-100">Interview Prep</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">Generate practice questions from your resume</p>
                 </div>
               </Link>
 

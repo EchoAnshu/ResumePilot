@@ -8,6 +8,7 @@ export const ROUTES = {
   upload: '/upload',
   analysis: '/analysis/:id',
   jdMatch: '/analysis/:id/jd-match',
+  interview: '/analysis/:id/interview',
   settings: '/settings',
   about: '/about',
 } as const
