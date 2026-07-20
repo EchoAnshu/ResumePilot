@@ -67,21 +67,23 @@ ResumePilot/
 
 ## API Overview
 
-| Method | Endpoint                | Description            |
-|--------|-------------------------|------------------------|
-| POST   | /api/resume/upload      | Upload a resume        |
-| GET    | /api/resume/:id         | Get resume details     |
-| DELETE | /api/resume/:id         | Delete a resume        |
-| POST   | /api/resume/:id/replace | Replace resume file    |
-| GET    | /api/analysis/:id       | Get analysis results   |
-| POST   | /api/analysis/:id       | Trigger ATS analysis   |
-| POST   | /api/jd-match/:id       | Match against JD       |
-| GET    | /api/jd-match/:id       | Get JD match result    |
-| GET    | /api/dashboard          | Dashboard analytics    |
-| GET    | /api/export/:id/:format | Export report          |
-| GET    | /api/settings           | Get settings           |
-| PUT    | /api/settings/:key      | Update a setting       |
-| POST   | /api/clear-cache        | Clear server cache     |
+| Method | Endpoint                    | Description              |
+|--------|-----------------------------|--------------------------|
+| POST   | /api/resume/upload          | Upload a resume          |
+| GET    | /api/resume/:id             | Get resume details       |
+| GET    | /api/resume                 | List all resumes         |
+| DELETE | /api/resume/:id             | Delete a resume          |
+| POST   | /api/resume/:id/replace     | Replace resume file      |
+| GET    | /api/analysis/:id           | Get analysis results     |
+| POST   | /api/analysis/:id           | Trigger ATS analysis     |
+| POST   | /api/resume/:id/ai/:task    | Run AI analysis task     |
+| POST   | /api/jd-match/:id           | Match against JD         |
+| GET    | /api/jd-match/:id           | Get JD match result      |
+| GET    | /api/dashboard              | Dashboard analytics      |
+| GET    | /api/export/:id/:format     | Export report            |
+| GET    | /api/settings               | Get settings             |
+| PUT    | /api/settings/:key          | Update a setting         |
+| POST   | /api/settings/clear-cache   | Clear server cache       |
 
 ## AI Setup (Optional)
 
