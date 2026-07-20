@@ -1,5 +1,6 @@
 import express from 'express'
 import cors from 'cors'
+import helmet from 'helmet'
 import { config } from './config/index.js'
 import { logger } from './config/logger.js'
 import routes from './routes/index.js'
@@ -7,6 +8,7 @@ import { connectDatabase, disconnectDatabase } from './database/client.js'
 
 const app = express()
 
+app.use(helmet({ contentSecurityPolicy: false }))
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
