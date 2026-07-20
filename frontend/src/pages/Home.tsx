@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Upload, BarChart3 } from 'lucide-react'
+import { Upload, BarChart3, LayoutDashboard } from 'lucide-react'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
 import { ROUTES, APP_NAME } from '../constants'
@@ -14,6 +14,11 @@ const features = [
     icon: BarChart3,
     title: 'ATS Scoring',
     description: 'Get detailed ATS compatibility scores with category breakdown.',
+  },
+  {
+    icon: LayoutDashboard,
+    title: 'Dashboard',
+    description: 'View statistics, score history, and manage all your resumes.',
   },
 ]
 
@@ -32,6 +37,11 @@ export default function Home() {
           <Link to={ROUTES.upload}>
             <Button size="lg" icon={<Upload className="h-5 w-5" />}>
               Upload Resume
+            </Button>
+          </Link>
+          <Link to={ROUTES.dashboard}>
+            <Button size="lg" variant="outline" icon={<LayoutDashboard className="h-5 w-5" />}>
+              Dashboard
             </Button>
           </Link>
         </div>

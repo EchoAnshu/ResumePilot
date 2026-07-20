@@ -91,6 +91,40 @@ export interface JdMatchResult {
   createdAt: string
 }
 
+export interface DashboardData {
+  totalResumes: number
+  totalAnalyses: number
+  averageAtsScore: number | null
+  latestResume: {
+    id: string
+    originalName: string
+    filename: string
+    mimeType: string
+    size: number
+    createdAt: string
+    updatedAt: string
+    parsedName: string | null
+    atsScore: number | null
+  } | null
+  recentResumes: Array<{
+    id: string
+    originalName: string
+    filename: string
+    mimeType: string
+    size: number
+    createdAt: string
+    updatedAt: string
+    parsedName: string | null
+    atsScore: number | null
+  }>
+  scoreHistory: Array<{
+    resumeId: string
+    resumeName: string
+    score: number
+    date: string
+  }>
+}
+
 export interface AtsScore {
   overall: number
   contact: number

@@ -5,6 +5,8 @@ import analysisRouter from './analysis.routes.js'
 import atsRouter from './ats.routes.js'
 import aiRouter from './ai.routes.js'
 import jdRouter from './jd.routes.js'
+import dashboardRouter from './dashboard.routes.js'
+import exportRouter from './export.routes.js'
 
 const router = Router()
 
@@ -14,5 +16,7 @@ router.use(analysisRouter)
 router.use(atsRouter)
 router.use(aiRouter)
 router.use(jdRouter)
+router.use(dashboardRouter)
+router.use(exportRouter)
 
 export default router

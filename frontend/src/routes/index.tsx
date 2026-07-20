@@ -4,6 +4,7 @@ import { ROUTES } from '../constants'
 import RootLayout from '../layouts/RootLayout'
 
 const Home = lazy(() => import('../pages/Home'))
+const Dashboard = lazy(() => import('../pages/Dashboard'))
 const ResumeUpload = lazy(() => import('../pages/ResumeUpload'))
 const ResumeAnalysis = lazy(() => import('../pages/ResumeAnalysis'))
 const JdMatch = lazy(() => import('../pages/JdMatch'))
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { path: ROUTES.home, element: <Lazy><Home /></Lazy> },
+      { path: ROUTES.dashboard, element: <Lazy><Dashboard /></Lazy> },
       { path: ROUTES.upload, element: <Lazy><ResumeUpload /></Lazy> },
       { path: ROUTES.analysis, element: <Lazy><ResumeAnalysis /></Lazy> },
       { path: ROUTES.jdMatch, element: <Lazy><JdMatch /></Lazy> },

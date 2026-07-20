@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { BarChart3, RefreshCw, Briefcase, AlertCircle } from 'lucide-react'
+import { BarChart3, RefreshCw, Briefcase, Download, FileJson, FileText, File as FilePdf, AlertCircle } from 'lucide-react'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
 import Skeleton, { SkeletonCard } from '../components/ui/Skeleton'
@@ -10,6 +10,7 @@ import AtsInsights from '../components/ats/AtsInsights'
 import AiInsightsSection from '../components/ats/AiInsightsSection'
 import { fetchAnalysis, triggerAnalysis } from '../services/analysis'
 import { fetchResume } from '../services/resume'
+import { downloadExport } from '../services/export'
 import type { AtsScore, ParsedResume } from '../types'
 
 export default function ResumeAnalysis() {
@@ -198,6 +199,7 @@ export default function ResumeAnalysis() {
           {id && <AiInsightsSection resumeId={id} />}
           {id && (
             <Card title="Quick Actions" padding="lg">
+              <div className="space-y-3">
               <Link
                 to={`/analysis/${id}/jd-match`}
                 className="flex items-center gap-3 p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-indigo-300 dark:hover:border-indigo-600 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all text-sm"
@@ -208,6 +210,36 @@ export default function ResumeAnalysis() {
                   <p className="text-xs text-gray-500 dark:text-gray-400">Compare your resume with a job description</p>
                 </div>
               </Link>
+
+              <div className="pt-2 border-t border-gray-200 dark:border-gray-700">
+                <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-2 flex items-center gap-1" id="export-label">
+                  <Download className="h-3 w-3" /> Export Report
+                </p>
+                <div className="flex gap-2" role="group" aria-labelledby="export-label">
+                  <button
+                    onClick={() => downloadExport(id!, 'json')}
+                    className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-gray-700 dark:text-gray-300"
+                    aria-label="Export as JSON"
+                  >
+                    <FileJson className="h-3.5 w-3.5" /> JSON
+                  </button>
+                  <button
+                    onClick={() => downloadExport(id!, 'markdown')}
+                    className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-gray-700 dark:text-gray-300"
+                    aria-label="Export as Markdown"
+                  >
+                    <FileText className="h-3.5 w-3.5" /> MD
+                  </button>
+                  <button
+                    onClick={() => downloadExport(id!, 'pdf')}
+                    className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-gray-700 dark:text-gray-300"
+                    aria-label="Export as PDF"
+                  >
+                    <FilePdf className="h-3.5 w-3.5" /> PDF
+                  </button>
+                </div>
+              </div>
+              </div>
             </Card>
           )}
         </div>
