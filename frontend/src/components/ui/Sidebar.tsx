@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom'
-import { LayoutDashboard, Upload, FileText, Settings, Info, X } from 'lucide-react'
+import { LayoutDashboard, Upload, Settings, Info, X } from 'lucide-react'
 import { ROUTES, APP_NAME } from '../../constants'
 import { useKeyboardShortcut } from '../../hooks/useShortcuts'
 
@@ -11,7 +11,6 @@ interface SidebarProps {
 const links = [
   { to: ROUTES.dashboard, label: 'Dashboard', icon: LayoutDashboard, shortcut: 'Ctrl+1' },
   { to: '/upload', label: 'Upload Resume', icon: Upload, shortcut: 'Ctrl+2' },
-  { to: '/analysis/placeholder', label: 'Analysis', icon: FileText },
   { to: ROUTES.settings, label: 'Settings', icon: Settings, shortcut: 'Ctrl+3' },
   { to: ROUTES.about, label: 'About', icon: Info, shortcut: 'Ctrl+4' },
 ]
