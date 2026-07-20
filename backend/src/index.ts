@@ -5,6 +5,7 @@ import { config } from './config/index.js'
 import { logger } from './config/logger.js'
 import routes from './routes/index.js'
 import { connectDatabase, disconnectDatabase } from './database/client.js'
+import { errorHandler } from './middleware/errorHandler.js'
 
 const app = express()
 
@@ -14,6 +15,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.use(config.apiPrefix, routes)
+app.use(errorHandler)
 
 async function start(): Promise<void> {
   try {
