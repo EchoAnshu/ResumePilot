@@ -18,6 +18,9 @@ model Resume {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
+  analysis Analysis?
+  jdMatch  JdMatch[]
+
   @@index([createdAt])
 }
 
