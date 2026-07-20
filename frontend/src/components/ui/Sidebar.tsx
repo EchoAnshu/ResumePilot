@@ -1,6 +1,7 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { LayoutDashboard, Upload, FileText, Settings, Info, X } from 'lucide-react'
 import { ROUTES, APP_NAME } from '../../constants'
+import { useKeyboardShortcut } from '../../hooks/useShortcuts'
 
 interface SidebarProps {
   isOpen: boolean
@@ -8,14 +9,20 @@ interface SidebarProps {
 }
 
 const links = [
-  { to: ROUTES.dashboard, label: 'Dashboard', icon: LayoutDashboard },
-  { to: '/upload', label: 'Upload Resume', icon: Upload },
+  { to: ROUTES.dashboard, label: 'Dashboard', icon: LayoutDashboard, shortcut: 'Ctrl+1' },
+  { to: '/upload', label: 'Upload Resume', icon: Upload, shortcut: 'Ctrl+2' },
   { to: '/analysis/placeholder', label: 'Analysis', icon: FileText },
-  { to: ROUTES.settings, label: 'Settings', icon: Settings },
-  { to: ROUTES.about, label: 'About', icon: Info },
+  { to: ROUTES.settings, label: 'Settings', icon: Settings, shortcut: 'Ctrl+3' },
+  { to: ROUTES.about, label: 'About', icon: Info, shortcut: 'Ctrl+4' },
 ]
 
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
+  const navigate = useNavigate()
+
+  useKeyboardShortcut(['Ctrl+1'], () => navigate(ROUTES.dashboard))
+  useKeyboardShortcut(['Ctrl+2'], () => navigate(ROUTES.upload))
+  useKeyboardShortcut(['Ctrl+3'], () => navigate(ROUTES.settings))
+  useKeyboardShortcut(['Ctrl+4'], () => navigate(ROUTES.about))
   return (
     <>
       {isOpen && (
@@ -59,7 +66,12 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
               }
             >
               <link.icon className="h-5 w-5" />
-              {link.label}
+              <div className="flex-1">{link.label}</div>
+              {link.shortcut && (
+                <span className="text-xs text-gray-400 dark:text-gray-500 hidden md:inline">
+                  {link.shortcut}
+                </span>
+              )}
             </NavLink>
           ))}
         </nav>

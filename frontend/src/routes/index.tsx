@@ -11,6 +11,7 @@ const JdMatch = lazy(() => import('../pages/JdMatch'))
 const Settings = lazy(() => import('../pages/Settings'))
 const About = lazy(() => import('../pages/About'))
 const NotFound = lazy(() => import('../pages/NotFound'))
+const ErrorPage = lazy(() => import('../pages/ErrorPage'))
 
 function Lazy({ children }: { children: React.ReactNode }) {
   return (
@@ -27,6 +28,7 @@ function Lazy({ children }: { children: React.ReactNode }) {
 const router = createBrowserRouter([
   {
     element: <RootLayout />,
+    errorElement: <Lazy><ErrorPage /></Lazy>,
     children: [
       { path: ROUTES.home, element: <Lazy><Home /></Lazy> },
       { path: ROUTES.dashboard, element: <Lazy><Dashboard /></Lazy> },
