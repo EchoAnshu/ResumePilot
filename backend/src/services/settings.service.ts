@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { prisma } from '../database/client.js'
 import { logger } from '../config/logger.js'
 import { config } from '../config/index.js'
+import { invalidateCache } from './cache.service.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -76,6 +77,8 @@ export async function clearCache(): Promise<{ freedBytes: number }> {
       logger.warn('Failed to clear directory', { dir, error })
     }
   }
+
+  invalidateCache()
 
   logger.info('Cache cleared', { freedBytes })
   return { freedBytes }

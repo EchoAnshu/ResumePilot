@@ -32,6 +32,7 @@ model Analysis {
 
   @@unique([resumeId])
   @@index([createdAt])
+  @@index([status, createdAt])
 }
 
 model JdMatch {

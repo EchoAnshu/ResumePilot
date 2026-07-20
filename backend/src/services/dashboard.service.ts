@@ -1,5 +1,6 @@
 import { prisma } from '../database/client.js'
 import type { AtsScore } from '../types/index.js'
+import { getCached, setCache, invalidateCache } from './cache.service.js'
 
 interface ResumeWithScore {
   id: string
@@ -29,7 +30,11 @@ export interface DashboardData {
   scoreHistory: ScoreHistoryItem[]
 }
 
+const DASHBOARD_CACHE_KEY = 'dashboard'
+
 export async function getDashboardData(): Promise<DashboardData> {
+  const cached = getCached<DashboardData>(DASHBOARD_CACHE_KEY)
+  if (cached) return cached
   const totalResumes = await prisma.resume.count()
 
   const analyses = await prisma.analysis.findMany({
@@ -116,4 +121,7 @@ export async function getDashboardData(): Promise<DashboardData> {
     recentResumes,
     scoreHistory,
   }
+
+  setCache(DASHBOARD_CACHE_KEY, data, 30_000)
+  return data
 }

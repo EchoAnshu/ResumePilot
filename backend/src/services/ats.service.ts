@@ -5,6 +5,7 @@ import * as resumeRepository from '../repositories/resume.repository.js'
 import * as analysisRepository from '../repositories/analysis.repository.js'
 import { parseResume } from '../parsers/resumeParser.js'
 import { calculateAtsScore } from './ats/atsCalculator.js'
+import { invalidateCache } from './cache.service.js'
 import type { AtsScore } from '../types/index.js'
 
 export async function analyzeResume(id: string): Promise<AtsScore> {
@@ -40,6 +41,9 @@ export async function analyzeResume(id: string): Promise<AtsScore> {
       atsScore: atsJson,
     })
   }
+
+  invalidateCache('dashboard')
+  invalidateCache('analysis')
 
   logger.info('ATS analysis completed', { id, overall: atsScore.overall })
   return atsScore
